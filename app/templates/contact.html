@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .form-group{
+        width: 100%;
+        margin: 10px;
+    }
+    .margin-20{
+        margin: 10px;
+        width: auto;
+    }
+    textarea{
+        max-height: 200px;
+    }
+    button{
+        float: right;
+    }
+</style>
+<br>
+<br>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col align-self-center">
+            <form action="{% url 'contact_send' %}" method="post" class="card bg-light">
+                <div class="alert alert-success" id="alert">{{ msg }}</div>
+                {% csrf_token %}
+                <div class="card-header">Contact Us</div>
+                <div class="card-body">
+                    <div class="flex-fill" style="display: flex;">
+                        <div class="form-group">
+                            <label for="" class="form-label">First Name: <span class="text text-danger">*</span></label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Last Name: <span class="text text-danger">*</span></label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group margin-20">
+                        <label for="" class="form-label">Email: <span class="text text-danger">*</span></label>
+                        <input type="email" name="" id="" class="form-control">
+                    </div>
+                    <div class="form-group margin-20">
+                        <label for="" class="form-label">Message: <span class="text text-danger">*</span></label>
+                        <textarea name="" id="" class="form-control"></textarea>
+
+                    </div>
+                    <div class="form-group margin-20">
+                        <button class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    let alert = select('#alert');
+    if (alert.innerHTML === ''){
+        alert.classList.add('hidden');
+    }else{
+        alert.classList.remove('hidden');
+    }
+</script>
+{% endblock content %}
